@@ -1,0 +1,29 @@
+# sweep_config.yaml
+program: sweep.py
+method: grid
+metric:
+  name: compression_accuracy_score
+  goal: maximize
+parameters:
+  weight_bits:
+    values: [2, 3, 4, 5, 6, 8]
+  act_bits:
+    values: [4, 6, 8]
+  per_channel:
+    values: [true, false]
+  weight_symmetric:
+    values: [true, false]
+  activation_calibration:
+    values: ["minmax", "moving_average"]
+  checkpoint:
+    value: "./checkpoints/mobilenetv2_cifar10_best.pth"
+  width_mult:
+    value: 1.0
+  dropout:
+    value: 0.2
+  batch_size:
+    value: 128
+  calibration_batches:
+    value: 100
+  seed:
+    value: 42
